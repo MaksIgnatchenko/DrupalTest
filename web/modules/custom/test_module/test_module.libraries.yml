@@ -1,0 +1,24 @@
+bricks:
+  css:
+    theme:
+      layouts/bricks/bricks.css: {}
+
+slick:
+  css:
+    theme:
+      css/slick-theme.css: {}
+      css/slick.css: {}
+  js:
+    js/slick.js: {}
+    js/custom.js: {}
+
+  dependencies:
+  - core/jquery
+  - core/jquery.once
+  - core/drupalSettings
+
+regField:
+  css:
+    theme:
+      css/reg.css: {}
+

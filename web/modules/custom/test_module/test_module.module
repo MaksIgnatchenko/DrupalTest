@@ -1,0 +1,92 @@
+<?php
+use \Drupal\Component\Utility\Timer;
+
+function test_module_preprocess_page(&$vars) {
+    if (\Drupal::currentUser()->hasPermission('watch generation time')) {
+        $execTime = round(Timer::read('test') / 1000, 1);
+        drupal_set_message("Execution time : $execTime s");
+    }
+    if($vars['is_front']) {
+        $vars['page']['content']['#attached']['library'][] = 'test_module/slick';
+        $vars['#attached']['drupalSettings']['test_module']['slick']['greating'] = 'Hello, i am slider and i am here!';
+    }
+}
+
+function test_module_preprocess_layout__slider_front(&$vars) {
+    $fields = [];
+    if ($vars['content']['column']['field_image']) {
+        foreach($vars['content']['column']['field_image'] as  $key => $item) {
+            if (is_int($key)) {
+                $fields[] = $item;
+            }
+        }
+    }
+    $vars['fields'] =  $fields;
+}
+
+
+function test_module_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $form['#attached']['library'][] = 'test_module/regField';
+    $form['gender']['active'] = [
+        '#type' => 'radios',
+        '#title' => t('Gender'),
+        '#required' => true,
+        '#default_value' => 0,
+        '#options' => [
+            'Male',
+            'Female'
+        ],
+        '#description' => t('Your gender')
+    ];
+    $form['gender']['#prefix'] = "<div class='test-class'>";
+    $form['gender']['#suffix'] = "</div>";
+    $form['actions']['submit']['#submit'][] = 'test_module_form_register_submit_handler';
+}
+function test_module_form_register_submit_handler(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+    $values = $form_state->getValues();
+    $name = $values['name'];
+    $email = $values['mail'];
+    $pass = $values['pass'];
+    $message = "Your data: Name  : $name  Email $email  Pass $pass";
+    drupal_set_message($message);
+    Drupal::logger('test_module')->debug($name . ' has been registered');
+}
+
+function test_module_crone() {
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = "test_module";
+    $key = "test_module_cron";
+    $to = "test@test.com";
+    $params['message'] = "Test message";
+    $params['title'] = 'Test title';
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] !== true) {
+        Drupal::logger('test_module')->debug("Letter was not sent to $to " . date('d-m-Y H:i:s'));
+    }
+    else {
+        Drupal::logger('test_module')->debug("Letter was sent to $to " . date('d-m-Y H:i:s'));
+    }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function test_module_mail($key, &$message, $params) {
+    $options = [
+        'langcode' => $message['langcode'],
+    ];
+    switch ($key) {
+        case 'test_module_cron':
+            $message['from'] = \Drupal::config('system.site')->get('mail');
+            $message['subject'] = t('Article created: @title', array('@title' => $params['node_title']), $options);
+            $message['body'][] = $params['message'];
+            break;
+        }
+}
+
+
+
+
+

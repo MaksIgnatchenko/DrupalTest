@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a two column layout.
+ *
+ * This template provides a two column display layout with full width areas at
+ * the top, bottom and in the middle.
+ *
+ * Available variables:
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'custom-slick-slider'
+  ]
+%}
+{% if fields is not empty %}
+    <div {{ attributes.addClass(classes) }}>
+        {% for field in fields %}
+            <div>
+                {{ field }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

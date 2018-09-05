@@ -1,0 +1,7 @@
+name: Test module
+description: page load time + bricks-style layout
+package: Custom
+type: module
+core: 8.x
+#libraries:
+#  - test_module/slick

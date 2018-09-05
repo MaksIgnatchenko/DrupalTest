@@ -1,0 +1,25 @@
+layout_bricks:
+  label: 'Bricks'
+  path: layouts/bricks
+  template: layout--bricks
+  library: test_module/bricks
+  category: 'Columns: 2'
+  regions:
+    top:
+      label: 'Top'
+    left:
+      label: 'Left'
+    right:
+      label: 'Right'
+    bottom:
+      label: 'Bottom'
+
+layout_slider_front:
+  label: 'Slider front'
+  path: layouts/slider
+  template: layout--slider-front
+  category: 'Slider: 1'
+  regions:
+    column:
+      label: 'column'
+

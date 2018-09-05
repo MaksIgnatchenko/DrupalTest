@@ -1,0 +1,18 @@
+name: eclipse
+type: theme
+description: 'My custom theme.'
+core: 8.x
+base theme: stable
+libraries:
+  - eclipse/bootstrap
+  - eclipse/custom
+regions:
+  settings: 'Settings'
+  header: 'Header'
+  user_menu: 'User menu'
+  top_menu : 'Top menu'
+  content: 'Content'
+  left_sidebar: 'Left sidebar'
+  footer: 'Footer'
+
+
