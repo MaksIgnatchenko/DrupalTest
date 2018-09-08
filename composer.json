@@ -22,7 +22,7 @@
         "drupal/admin_toolbar": "^1.24",
         "drupal/better_normalizers": "^1.0@beta",
         "drupal/conflict": "^1.0",
-        "drupal/console": "^1.0.2",
+        "drupal/console": "~1.0",
         "drupal/core": "~8.5.3",
         "drupal/default_content": "^1.0@alpha",
         "drupal/default_content_deploy": "^1.0@alpha",

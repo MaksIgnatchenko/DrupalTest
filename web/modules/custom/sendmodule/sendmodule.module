@@ -1,0 +1,48 @@
+<?php
+
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_user_login().
+ */
+function sendmodule_user_login($account) {
+    $userName = $account->getUsername();
+    $date = date('d-m-Y H:i:s ');
+    $siteEmail = \Drupal::config('system.site')->get('mail');
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = "sendmodule";
+    $key = "sendmodule_user_login";
+    $to = $siteEmail;
+    $params['message'] = "User $userName has been loggened at $date";
+    $params['title'] = 'Test title';
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] !== true) {
+        Drupal::logger('sendmodule')->debug("User $userName has been loggened. Letter was not sent to $to $date");
+    }
+    else {
+        Drupal::logger('sendmodule')->debug("User $userName has been loggened. Letter was sent to $to $date");
+    }
+}
+
+
+
+/**
+ * Implements hook_mail().
+ */
+function sendmodule_mail($key, &$message, $params) {
+    $options = [
+        'langcode' => $message['langcode'],
+    ];
+    switch ($key) {
+        case 'sendmodule_user_login':
+            $message['from'] = \Drupal::config('system.site')->get('mail');
+            $message['subject'] = t('Your mail subject Here: @title', array('@title' => $params['title']), $options);
+            $message['body'][] = Html::escape($params['message']);
+            break;
+    }
+}
+

@@ -1,0 +1,10 @@
+<?php
+
+function testApi() {
+    $x = \Drupal::entityTypeManager()->getStorage('node');
+    $x->load(120);
+}
+
+testApi();
+
+
