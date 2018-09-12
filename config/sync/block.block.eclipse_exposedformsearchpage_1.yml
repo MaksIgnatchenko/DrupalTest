@@ -1,0 +1,23 @@
+uuid: 9646c382-51f4-4750-939f-b10267c1f208
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - eclipse
+id: eclipse_exposedformsearchpage_1
+theme: eclipse
+region: left_sidebar
+weight: -7
+provider: null
+plugin: 'views_exposed_filter_block:search-page_1'
+settings:
+  id: 'views_exposed_filter_block:search-page_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+visibility: {  }

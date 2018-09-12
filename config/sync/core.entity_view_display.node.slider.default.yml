@@ -1,0 +1,34 @@
+uuid: 6b1a63a9-95aa-4975-8bc6-e3cbdb6e034e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.slider.field_image
+    - image.style.slider_image
+    - node.type.slider
+  module:
+    - field_layout
+    - image
+    - test_module
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_slider_front
+    settings: {  }
+id: node.slider.default
+targetEntityType: node
+bundle: slider
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: slider_image
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: column
+hidden:
+  langcode: true
+  links: true

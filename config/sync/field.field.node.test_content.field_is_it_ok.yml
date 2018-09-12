@@ -1,0 +1,21 @@
+uuid: e6e78e48-6ecc-426a-b6d9-69b6032622ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_it_ok
+    - node.type.test_content
+id: node.test_content.field_is_it_ok
+field_name: field_is_it_ok
+entity_type: node
+bundle: test_content
+label: 'Is it ok'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

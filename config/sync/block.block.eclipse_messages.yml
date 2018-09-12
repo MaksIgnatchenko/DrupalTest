@@ -1,0 +1,22 @@
+uuid: 1dfca44c-4adb-438a-88c9-804d50af2012
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - eclipse
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: eclipse_messages
+theme: eclipse
+region: header
+weight: -7
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

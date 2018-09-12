@@ -1,0 +1,23 @@
+uuid: c72ff5b1-5a2a-4fcb-81d6-5ab670f852c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.filtered_by
+  module:
+    - facets
+  theme:
+    - eclipse
+id: eclipse_filteredby
+theme: eclipse
+region: left_sidebar
+weight: -6
+provider: null
+plugin: 'facet_block:filtered_by'
+settings:
+  id: 'facet_block:filtered_by'
+  label: 'Filtered by'
+  provider: facets
+  label_display: visible
+  block_id: filteredby
+visibility: {  }

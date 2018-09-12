@@ -1,10 +1,75 @@
 <?php
 
-function testApi() {
-    $x = \Drupal::entityTypeManager()->getStorage('node');
-    $x->load(120);
+
+function entityApiTest_preprocess_node(&$vars) {
+    if ($vars['page'] === true) {
+        //    TASK 1
+        $startDay  =  strtotime("today", REQUEST_TIME);
+        $query = \Drupal::entityQuery('node');
+        $nodes_id = $query->condition('created', $startDay, '>=')
+            ->execute();
+        $nodes = \Drupal::entityTypeManager()->getStorage('node')
+            ->loadMultiple($nodes_id);
+
+    //    CREATE TRANSLATE
+    //    $node = array_shift($nodes);
+    //    $node_uk = $node->addTranslation('uk');
+    //    $node_uk->title = 'Тестова нода';
+    //    $node_uk->set('body', '<p>Привіт світ</p>');
+    //    $node_uk->set('field_test', '<p>Це працює</p>');
+    //    $node_uk->save();
+
+
+//    TASK 2 (using custom node template for admin)
+        $node = $vars['node'];
+        $langNodes = [];
+        $languages = $node->getTranslationLanguages();
+        foreach($languages as $language) {
+            $langCode = $language->getId();
+            $langName = $language->getName();
+            $langNodes[$langCode]['langName'] = $langName;
+            $langNodes[$langCode]['url'] = $node->getTranslation($langCode)
+                    ->toUrl('canonical', ['absolute' => TRUE])->toString() . '?destination=/admin/content';
+        }
+        $vars['translates'] = $langNodes;
+
+//    TASK 3
+        if($node->bundle() === 'article') {
+            $listTerms = $node->get('field_tags')->referencedEntities();
+            if (!empty($listTerms)) {
+                $terms = [];
+                foreach ($listTerms as $term) {
+                    $bundle = $term->bundle();
+                    $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::load($bundle);
+                    $vocabularyDescription = $vocabulary->getDescription();
+                    $terms[] = ['term' => $term->getName(),
+                        'vocabulary' => $bundle,
+                        'desc' => $vocabularyDescription
+                        ];
+                }
+                uasort($terms, function ($a, $b) {
+                    return strcmp($a['term'], $b['term']);
+                });
+                $vars['terms'] = $terms;
+            }
+        }
+    }
 }
 
-testApi();
+function entityApiTest_theme_suggestions_node_alter(array &$suggestions, array $variables) {
+    $userRoles = \Drupal::currentUser()->getRoles();
+    if (in_array('administrator', $userRoles)) {
+        $suggestions[] = 'node__' . 'administrator';
+    }
+}
+
+function entityApiTest_theme($existing, $type, $theme, $path) {
+    return [
+        'node__administrator' => [
+            'template' => 'node--administrator',
+            'base hook' => 'node',
+        ],
+    ];
+}
 
 

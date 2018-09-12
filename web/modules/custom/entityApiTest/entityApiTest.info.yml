@@ -3,3 +3,5 @@ description: My custom module for learn entity api in drupal".
 package: Custom
 type: module
 core: 8.x
+libraries:
+  - superpuperCutom

@@ -1,0 +1,30 @@
+uuid: 31a9d087-adca-48c1-a092-dd2146a8e589
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.front_slider
+  module:
+    - system
+    - views
+  theme:
+    - eclipse
+id: views_block__front_slider_block_1
+theme: eclipse
+region: header
+weight: 0
+provider: null
+plugin: 'views_block:front_slider-block_1'
+settings:
+  id: 'views_block:front_slider-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

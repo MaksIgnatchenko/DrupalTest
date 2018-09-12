@@ -1,0 +1,23 @@
+uuid: 0f984155-b197-4646-ae1b-4dd94169f0b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.filtered_by
+  module:
+    - facets
+  theme:
+    - bartik
+id: filteredby
+theme: bartik
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:filtered_by'
+settings:
+  id: 'facet_block:filtered_by'
+  label: 'Filtered by'
+  provider: facets
+  label_display: visible
+  block_id: filteredby
+visibility: {  }

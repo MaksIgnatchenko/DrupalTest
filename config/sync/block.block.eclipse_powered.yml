@@ -1,0 +1,22 @@
+uuid: 7e73c249-254f-4e48-a1d0-f6252453f984
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - eclipse
+_core:
+  default_config_hash: jQQUUWN2Uxr5qZtc9zcJKBCxpKY8orN1u2HPqYYRQDI
+id: eclipse_powered
+theme: eclipse
+region: settings
+weight: -6
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  provider: system
+  label_display: '0'
+visibility: {  }

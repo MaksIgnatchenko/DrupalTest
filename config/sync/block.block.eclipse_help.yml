@@ -1,0 +1,22 @@
+uuid: fc1f36f3-f4b5-4110-b9af-1d0dd9a3a871
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - eclipse
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: eclipse_help
+theme: eclipse
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

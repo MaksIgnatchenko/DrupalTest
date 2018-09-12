@@ -1,0 +1,27 @@
+uuid: b9a0c39c-b0b8-4068-a76d-4c294a97b7cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.slider_image.field_image
+    - node.type.slider_image
+  module:
+    - field_layout
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: node.slider_image.teaser
+targetEntityType: node
+bundle: slider_image
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_image: true
+  langcode: true

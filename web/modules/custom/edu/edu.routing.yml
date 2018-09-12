@@ -1,0 +1,7 @@
+edu.nodes_list_controller_getAllJson:
+  path: '/edu/get-nodes-json'
+  defaults:
+    _controller: '\Drupal\edu\Controller\NodesListController::getAllJson'
+    _title: 'getAllJson'
+  requirements:
+    _permission: 'access content'

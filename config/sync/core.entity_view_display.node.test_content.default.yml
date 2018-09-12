@@ -1,0 +1,55 @@
+uuid: c13e0da3-5d6d-4a80-817a-ccf1cf3f25d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.test_content.body
+    - field.field.node.test_content.field_are_you_ready
+    - field.field.node.test_content.field_is_it_ok
+    - node.type.test_content
+  module:
+    - field_layout
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: node.test_content.default
+targetEntityType: node
+bundle: test_content
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_are_you_ready:
+    weight: 102
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_is_it_ok:
+    weight: 103
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

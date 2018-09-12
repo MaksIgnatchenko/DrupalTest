@@ -1,0 +1,71 @@
+uuid: 0b0947f0-6e2f-4e59-9e78-bc1a86754c77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_type
+    - node.type.product
+    - taxonomy.vocabulary.product_type
+  module:
+    - dynamic_entity_reference
+id: node.product.field_product_type
+field_name: field_product_type
+entity_type: node
+bundle: product
+label: 'Product type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  taxonomy_term:
+    handler: 'default:taxonomy_term'
+    handler_settings:
+      target_bundles:
+        product_type: product_type
+      sort:
+        field: name
+        direction: asc
+      auto_create: false
+      auto_create_bundle: ''
+  comment:
+    handler: 'default:comment'
+    handler_settings: {  }
+  contact_message:
+    handler: 'default:contact_message'
+    handler_settings: {  }
+  node:
+    handler: 'default:node'
+    handler_settings: {  }
+  block_content:
+    handler: 'default:block_content'
+    handler_settings: {  }
+  menu_link_content:
+    handler: 'default:menu_link_content'
+    handler_settings: {  }
+  replication:
+    handler: 'default:replication'
+    handler_settings: {  }
+  file:
+    handler: 'default:file'
+    handler_settings: {  }
+  replication_log:
+    handler: 'default:replication_log'
+    handler_settings: {  }
+  search_api_task:
+    handler: 'default:search_api_task'
+    handler_settings: {  }
+  shortcut:
+    handler: 'default:shortcut'
+    handler_settings: {  }
+  user:
+    handler: 'default:user'
+    handler_settings: {  }
+  workspace:
+    handler: 'default:workspace'
+    handler_settings: {  }
+  workspace_pointer:
+    handler: 'default:workspace_pointer'
+    handler_settings: {  }
+field_type: dynamic_entity_reference

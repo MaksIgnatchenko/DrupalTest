@@ -1,0 +1,33 @@
+uuid: 1b300472-4745-4930-b188-ccd1ae57c452
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.slider_image.field_image
+    - node.type.slider_image
+  module:
+    - field_layout
+    - image
+    - layout_discovery
+    - user
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings: {  }
+id: node.slider_image.default
+targetEntityType: node
+bundle: slider_image
+mode: default
+content:
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+hidden:
+  langcode: true
+  links: true

@@ -1,0 +1,15 @@
+uuid: 1668c2d6-aab4-4fca-8cc2-bd95be7b3534
+name: Experimental
+mail: foecunditate@gmail.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+mail_notification: ''

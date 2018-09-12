@@ -1,0 +1,14 @@
+uuid: 613a3358-42ee-4153-8a88-73a8f1722508
+langcode: en
+status: true
+dependencies: {  }
+name: slider_image
+label: 'Slider image'
+effects:
+  e94f31ed-be21-4193-893e-d8b3c48b6c69:
+    uuid: e94f31ed-be21-4193-893e-d8b3c48b6c69
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 400

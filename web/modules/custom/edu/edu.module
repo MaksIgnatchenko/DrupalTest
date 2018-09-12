@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains edu.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function edu_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the edu module.
+    case 'help.page.edu':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Educational module for lecture 11') . '</p>';
+      return $output;
+
+    default:
+  }
+}

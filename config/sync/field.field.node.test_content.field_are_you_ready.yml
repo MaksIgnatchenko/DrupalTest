@@ -1,0 +1,21 @@
+uuid: d425e6af-8662-4732-81fb-a455cef096db
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_are_you_ready
+    - node.type.test_content
+id: node.test_content.field_are_you_ready
+field_name: field_are_you_ready
+entity_type: node
+bundle: test_content
+label: 'Are you ready'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
