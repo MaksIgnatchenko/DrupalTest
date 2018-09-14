@@ -9,14 +9,16 @@ use Drupal\Core\Controller\ControllerBase;
  */
 class NodesListController extends ControllerBase {
 
-  /**
-   * Get all node in json format
-   *
-   * @return string
-   *   Return Hello string.
-   */
-  public function getAllJson() {
-    return 'Hello world';
-  }
+	/**
+	* Get all node in json format
+	*
+	* @return string
+	*   Return Hello string.
+	*/
+	public function getAllJson() {
+		return 'Hello world';
+	}
+
+
 
 }

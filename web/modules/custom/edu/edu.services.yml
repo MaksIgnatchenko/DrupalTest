@@ -1,0 +1,8 @@
+services:
+  edu.customtime:
+    class: Drupal\edu\Services\CustomTime
+    arguments: []
+
+  edu.node_retriever:
+    class: Drupal\edu\Services\NodeRetriever
+    arguments: ['@entity_type.manager']
