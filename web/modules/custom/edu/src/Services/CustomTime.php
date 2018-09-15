@@ -14,7 +14,7 @@ class CustomTime {
     }
 
     public function getCurrentTime($format = 'd/m/Y H:i:s') {
-        $userTimeZone = \Drupal::currentUser()->getTimeZone();
+        $userTimeZone = \Drupal::currentUser()->getTimeZone() ?? date_default_timezone_get();
         $timeZone = new \DateTimeZone($userTimeZone);
         $this->dateTime->setTimezone($timeZone);
         return  $this->dateTime->format($format);
