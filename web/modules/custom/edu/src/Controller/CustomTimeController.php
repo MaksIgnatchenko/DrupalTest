@@ -43,7 +43,8 @@ class CustomTimeController extends ControllerBase {
   public function getTime() {
     $dateTime = $this->time->getCurrentTime();
     $build = [
-        '#type' => 'markup',
+	  '#title' => 'The new page title',
+	  '#type' => 'markup',
         '#markup' => $dateTime,
         '#cache' => [
             'context' => ['user'],
