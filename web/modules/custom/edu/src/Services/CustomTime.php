@@ -14,8 +14,8 @@ class CustomTime {
 
     private $dateTime;
 
-    private const EN_WEEKEND_DAYS = [6, 7];
-    private const WEEKEND_DAYS = [7, 0];
+    private const EN_WEEKEND_DAYS = [5, 6];
+    private const WEEKEND_DAYS = [6, 0];
 
     protected $language_manager;
 
@@ -39,19 +39,31 @@ class CustomTime {
     }
 
     public function getCurrentTime($format = 'd/m/Y H:i:s') {
-        $userTimeZone = \Drupal::currentUser()->getTimeZone() ?? date_default_timezone_get();
-        $timeZone = new \DateTimeZone($userTimeZone);
-        $this->dateTime->setTimezone($timeZone);
-        return  $this->dateTime->format($format);
+		return $this->dateFormatter->format(
+			REQUEST_TIME,
+			'custom',
+			$format,
+			$this->currentUser->getTimeZone()
+		);
     }
 
     public function isDayOff($date = 'today') {
+    	$timeStamp = strtotime($date);
+    	if ($timeStamp === false) {
+			\Drupal::logger('edu')->debug("Format of date $date is not valid");
+			$timeStamp = REQUEST_TIME;
+		}
         $current_language = $this->language_manager->getCurrentLanguage()->getId();
-        $weekendDays = ($current_language == 'en') ? self::EN_WEEKEND_DAYS : self::WEEKEND_DAYS;
-        $numberOfDay = $this->dateFormatter->format(REQUEST_TIME, 'custom', 'w', $this->currentUser->getTimeZone());
-        if(in_array($numberOfDay, $weekendDays)) {
-            return true;
-        }
-        return false;
+//        $weekendDays = ($current_language == 'en') ? self::EN_WEEKEND_DAYS : self::WEEKEND_DAYS;
+		$configStorage = \Drupal::config('edu.settings');
+		$weekendDays = ($current_language == 'en') ? $configStorage->get('en_weekends') : $configStorage->get('weekends');
+        $numberOfDay = $this->dateFormatter
+			->format(
+				$timeStamp,
+				'custom',
+				'w',
+				$this->currentUser->getTimeZone()
+			);
+        return in_array($numberOfDay, $weekendDays);
     }
 }

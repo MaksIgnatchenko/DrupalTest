@@ -6,6 +6,11 @@ services:
   edu.node_retriever:
     class: Drupal\edu\Services\NodeRetriever
     arguments: ['@entity_type.manager']
+
   edu.comment_manager:
     class: Drupal\edu\Services\CommentManager
     arguments: ['@entity.manager', '@current_user']
+
+  edu.find_simmilar_content:
+    class: Drupal\edu\Services\FindSimmilarContent
+    arguments: ['@entity.query', '@entity.manager']

@@ -5,12 +5,13 @@ edu.nodes_list_controller_getAllJson:
     _title: 'getAllJson'
   requirements:
     _permission: 'access content'
+    _role: 'authenticated'
 
 edu.custom_time_controller_getTime:
   path: '/edu/currently'
   defaults:
     _controller: '\Drupal\edu\Controller\CustomTimeController::getTime'
-    _title: Current date and time'
+    _title: 'Current date and time'
   requirements:
     _permission: 'access content'
 
@@ -19,6 +20,7 @@ edu.node_retiever_controller_hello:
   defaults:
     _controller: '\Drupal\edu\Controller\NodeRetieverController::getTodayNodes'
     _title: 'Today nodes'
+  methods: [GET]
   requirements:
     _permission: 'access content'
     _method: 'GET'
@@ -29,5 +31,13 @@ edu.comment_controller_getSomeComments:
   defaults:
     _controller: '\Drupal\edu\Controller\CommentController::getSomeComments'
     _title: 'My comments'
+  requirements:
+    _permission: 'access content'
+
+edu.simmilar_content_controller_find:
+  path: '/edu/find'
+  defaults:
+    _controller: '\Drupal\edu\Controller\SimmilarContentController::find'
+    _title: 'find'
   requirements:
     _permission: 'access content'

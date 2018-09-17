@@ -5,6 +5,8 @@ namespace Drupal\edu\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\edu\Services\NodeRetriever;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Class NodeRetieverController.
@@ -40,7 +42,10 @@ class NodeRetieverController extends ControllerBase {
    * @return string
    *   Return Hello string.
    */
-  public function getTodayNodes() {
+	public function getTodayNodes(Request $request) {
+//		if ($request->getMethod() != 'GET') {
+//			throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
+//		}
   	$rows = $this->eduNodeRetriever->getNodes();
   	$build['today_nodes'] = [
 		'#type' => 'table',
@@ -50,5 +55,4 @@ class NodeRetieverController extends ControllerBase {
 	];
     return $build;
   }
-
 }

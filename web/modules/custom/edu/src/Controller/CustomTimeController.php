@@ -5,7 +5,6 @@ namespace Drupal\edu\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\edu\Services\CustomTime;
-
 /**
  * Class CustomTimeController.
  */
@@ -41,14 +40,15 @@ class CustomTimeController extends ControllerBase {
    *   Return Hello string.
    */
     public function getTime() {
-        $dateTime = $this->time->getCurrentTime();
+        $currentDate = $this->time->getCurrentTime('d/m/Y H:i:s');
         $build = [
             '#theme' => 'time-template',
             '#data' => [
-                'time' => $dateTime,
+                'time' => $currentDate,
                 'isDayOff' => self::isDayOff()
                 ],
-            '#title' => t('My page. Generated at %time', ['%time' => time()]),
+            '#title' => t('My page. Generated at %time',
+				['%time' => $this->time->getCurrentTime('H:i:s')]),
             '#cache' => [
                 'max-age' => 3600,
                 ],
