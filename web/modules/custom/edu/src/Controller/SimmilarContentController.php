@@ -42,12 +42,12 @@ class SimmilarContentController extends ControllerBase {
    */
   public function find() {
 //  	$entity = $this->eduFindSimmilarContent->find('Test article sadasdasdasd');
-	  $entity = $this->eduFindSimmilarContent->smartSearch();
-	  $z = 3;
-    return [
-      '#type' => 'markup',
-      '#markup' => $this->t($entity->getTitle())
-    ];
+	  $entity = $this->eduFindSimmilarContent->smartSearch('Test article sadasdasdasd');
+	  $build = [
+          '#type' => 'markup',
+          '#markup' => $this->t($entity->getTitle())
+      ];
+    return $build;
   }
 
 }

@@ -28,6 +28,7 @@ class CustomTime {
 
     protected $dateFormatter;
 
+
     /**
      * Constructs a new CustomTime object.
      */

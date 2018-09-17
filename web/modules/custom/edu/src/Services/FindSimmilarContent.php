@@ -46,8 +46,19 @@ class FindSimmilarContent {
 	}
 
 	public function smartSearch($text = 'test article') {
-		$searchEngine = new SearchController;
-		$x = 10;
-	}
+        $query = \Drupal\search_api\Entity\Index::load('default_index')->query();
+        $query->addCondition('search_api_language', 'en');
+        $query->keys('test article');
+        $query->range(0, 25);
+        $data = $query->execute();
+        $results = $data->getResultItems();
+        $entities = [];
+        foreach($results as $result) {
+            $entities[] = $result->getOriginalObject()->get('nid')->value;
+        }
+        $entityId = reset($entities);
+        $entity = $this->entityManager->getStorage('node')->load($entityId);
+        return $entity;
+    }
 
 }
