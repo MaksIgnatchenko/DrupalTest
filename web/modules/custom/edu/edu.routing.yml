@@ -22,3 +22,12 @@ edu.node_retiever_controller_hello:
   requirements:
     _permission: 'access content'
     _method: 'GET'
+
+
+edu.comment_controller_getSomeComments:
+  path: '/node/{node}/user-comments'
+  defaults:
+    _controller: '\Drupal\edu\Controller\CommentController::getSomeComments'
+    _title: 'My comments'
+  requirements:
+    _permission: 'access content'

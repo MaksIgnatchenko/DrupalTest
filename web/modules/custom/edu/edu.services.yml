@@ -1,8 +1,11 @@
 services:
   edu.customtime:
     class: Drupal\edu\Services\CustomTime
-    arguments: []
+    arguments: ['@language_manager', '@current_user', '@date.formatter']
 
   edu.node_retriever:
     class: Drupal\edu\Services\NodeRetriever
     arguments: ['@entity_type.manager']
+  edu.comment_manager:
+    class: Drupal\edu\Services\CommentManager
+    arguments: ['@entity.manager', '@current_user']

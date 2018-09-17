@@ -1,0 +1,13 @@
+{% for comment in comments %}
+    <div>
+        <div>
+            Time : {{ comment.time }}
+        </div>
+        <div>
+            Subject : {{ comment.title }}
+        </div>
+        <div>
+            Comment : {{ comment.body | raw }}
+        </div>
+    </div>
+{% endfor %}

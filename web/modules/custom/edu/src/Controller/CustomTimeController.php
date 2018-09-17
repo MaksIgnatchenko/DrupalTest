@@ -40,18 +40,24 @@ class CustomTimeController extends ControllerBase {
    * @return string
    *   Return Hello string.
    */
-  public function getTime() {
-    $dateTime = $this->time->getCurrentTime();
-    $build = [
-	  '#title' => 'The new page title',
-	  '#type' => 'markup',
-        '#markup' => $dateTime,
-        '#cache' => [
-            'context' => ['user'],
-            'max-age' => 150,
-        ],
-    ];
-    return $build;
-  }
+    public function getTime() {
+        $dateTime = $this->time->getCurrentTime();
+        $build = [
+            '#theme' => 'time-template',
+            '#data' => [
+                'time' => $dateTime,
+                'isDayOff' => self::isDayOff()
+                ],
+            '#title' => t('My page. Generated at %time', ['%time' => time()]),
+            '#cache' => [
+                'max-age' => 3600,
+                ],
+            ];
+        return $build;
+    }
+
+    private function isDayOff() {
+        return $this->time->isDayOff();
+    }
 
 }

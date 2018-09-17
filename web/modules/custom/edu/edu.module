@@ -22,3 +22,19 @@ function edu_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+function edu_theme($existing, $type, $theme, $path) {
+    return [
+        'comment-template' => [
+            'variables' => ['comments' => []],
+            'template' => 'edu-field-comment',
+        ],
+        'time-template' => [
+            'variables' => ['data' => []],
+            'template' => 'time-field',
+        ],
+    ];
+}
+
+function edu_preprocess(&$variables){
+}
