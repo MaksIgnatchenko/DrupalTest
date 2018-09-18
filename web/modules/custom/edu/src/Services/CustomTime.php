@@ -3,6 +3,7 @@
 namespace Drupal\edu\Services;
 
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 
@@ -28,15 +29,18 @@ class CustomTime {
 
     protected $dateFormatter;
 
+    protected $logger;
+
 
     /**
      * Constructs a new CustomTime object.
      */
-    public function __construct(LanguageManagerInterface $language_manager, AccountProxyInterface $current_user, DateFormatterInterface $dateFormatter) {
+    public function __construct(LanguageManagerInterface $language_manager, AccountProxyInterface $current_user, DateFormatterInterface $dateFormatter, LoggerChannelFactory $logger) {
         $this->dateTime = new \DateTime();
         $this->language_manager = $language_manager;
         $this->currentUser = $current_user;
         $this->dateFormatter = $dateFormatter;
+        $this->logger = $logger;
     }
 
     public function getCurrentTime($format = 'd/m/Y H:i:s') {
@@ -51,7 +55,8 @@ class CustomTime {
     public function isDayOff($date = 'today') {
     	$timeStamp = strtotime($date);
     	if ($timeStamp === false) {
-			\Drupal::logger('edu')->debug("Format of date $date is not valid");
+//			\Drupal::logger('edu')->debug("Format of date $date is not valid");
+            $this->logger->get('default')->debug("Format of date $date is not valid");
 			$timeStamp = REQUEST_TIME;
 		}
         $current_language = $this->language_manager->getCurrentLanguage()->getId();

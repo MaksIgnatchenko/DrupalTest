@@ -1,7 +1,7 @@
 services:
   edu.customtime:
     class: Drupal\edu\Services\CustomTime
-    arguments: ['@language_manager', '@current_user', '@date.formatter']
+    arguments: ['@language_manager', '@current_user', '@date.formatter', '@logger.factory']
 
   edu.node_retriever:
     class: Drupal\edu\Services\NodeRetriever

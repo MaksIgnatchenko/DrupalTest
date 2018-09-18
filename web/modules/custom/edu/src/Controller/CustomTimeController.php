@@ -45,7 +45,7 @@ class CustomTimeController extends ControllerBase {
             '#theme' => 'time-template',
             '#data' => [
                 'time' => $currentDate,
-                'isDayOff' => self::isDayOff()
+                'isDayOff' => $this->time->isDayOff('asdasdasdasdasd')
                 ],
             '#title' => t('My page. Generated at %time',
 				['%time' => $this->time->getCurrentTime('H:i:s')]),
